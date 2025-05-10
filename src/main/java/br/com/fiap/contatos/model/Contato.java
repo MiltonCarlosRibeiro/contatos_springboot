@@ -1,19 +1,32 @@
 package br.com.fiap.contatos.model;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
+@Table(name = "tbl_contato")
 public class Contato {
 
+    @Id
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "CONTATOS_SEQ"
+    )
+    @SequenceGenerator(
+            name = "CONTATOS_SEQ",
+            sequenceName = "CONTATOS_SEQ",
+            allocationSize = 50
+    )
     private Long id;
+
 
     private String nome;
 
     private String email;
 
+    @Column(name = "data_nascimento")
     private LocalDate dataNascimento;
 
 
